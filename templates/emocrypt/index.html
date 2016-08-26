@@ -1,0 +1,151 @@
+<html>
+<head>
+    <title>Brain Fry</title>
+
+</head>
+
+<style type="text/css" media="screen">
+ body{
+    padding-top: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+ }
+
+ p{
+    font-size: 16;
+    color:#21212b;
+
+ }
+
+
+</style>
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+     <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Brain Fry</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#encrypt">Encrypt</a></li>
+            <li><a href="#decrypt"> Decrypt</a></li>
+            <li><a href="#doc">Features</a></li>
+            <li><a href="https://github.com/wasi0013/brainfry">View on github</a></li>
+            
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <center><h1> <i><b>Brain Fry</b></i> </h1> </center>
+    <p><div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div></p>
+
+
+    <section id="encrypt">
+    <div class="well">
+        <form class = "form" action="" method="post">
+            {% csrf_token %}
+            <h3> Encrypt your Message</h3>
+            <p>Your Message: <input type=text name=entext> </p>
+            <p><input class="btn btn-lg btn-primary" type=submit value=Encrypt></p>
+        </form>
+    </div>
+    {% if encrypted %}
+        <div id="emoji" class = 'well'>
+        {{ encrypted }}
+        </div>
+        <div class="well">
+        <h3>Copy below:</h3>
+        </br>
+            {{ encrypted }}
+        </div>
+
+    {% endif %}
+    </section>
+     <section id="decrypt">
+
+    <div class="well">
+        <form class = "form" action="" method="post">
+            {% csrf_token %}
+            <h3> Decrypt your Message</h2>
+            <p>Brainfry emoji Message: <input type=text name=detext> </p>
+            <p><input class="btn btn-lg btn-primary" type=submit value=Decrypt></p>
+        </form>
+    </div>
+    {% if decrypted %}
+        <div class = 'well alert-success'>
+        <h4>{{ decrypted }}</h4>
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class = 'well alert-danger'>
+        <h4>{{ error }}</h4>
+        </div>
+    {% endif %}
+</section>
+<section id="doc">
+    <div class="well">
+        <h2><b>Features</b></h2>
+        <ul>
+        <li>Encrypts Text as EMOJI</li>
+        <li>Random emoji for same message in each attempt</li>
+        <li> decrypts any brain fry encrypted message </li>
+        </ul>
+        <h2><b>TO DO</b></h2>
+        <ul>
+        <li>Copy to clipboard feature</li>
+        <li>Use social site specific emoji sets</li>
+        <li>Preserve message capitalization in decryption</li>
+        <li></li>
+        <li>Use social site specific emoji sets</li>
+        <li>Preserve message capitalization in decryption</li>
+
+        </ul>
+
+    </div>
+
+    </section>
+<div class="fb-comments" data-href="{{request.build_absolute_uri}}"></div>
+<section id="footer">
+    <footer>
+        </footer>
+</section>
+</body>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<script src="//twemoji.maxcdn.com/twemoji.min.js"></script>
+<script>
+    window.onload = function() {
+
+  // Set the size of the rendered Emojis
+  // This can be set to 16x16, 36x36, or 72x72
+  twemoji.size = '36x36';
+
+  // Parse the document body and
+  // insert <img> tags in place of Unicode Emojis
+  twemoji.parse(document.getElementById("emoji"));
+
+}
+
+</script>
+</html>
