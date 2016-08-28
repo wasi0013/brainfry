@@ -1,8 +1,11 @@
 #BRAIN FRY
 encrypts text to emoji and decrypts brainfry encrypted emojis to text
-
 [demo](http://brainfry.heroku.com)
 
+##powered by:
+* [twemoji - (Twitter emoji)](https://twitter.github.io/twemoji/)
+* [Bootstrap](https://getbootstrap.com/)
+* [facebook like & comment plugin] (https://developers.facebook.com/docs/plugins/comments)
 #Test using Virtualenv
  * clone the repo
  * cd to the repo directory
